@@ -3,6 +3,7 @@ create table `user`(
 	user_name varchar(10) not null,
 	user_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into `user` values('001','学习组','好好学习，天天向上');
 create table admin(
 	admin_id varchar(10) not null,
 	admin_name varchar(10),
@@ -15,6 +16,7 @@ create table admin(
 	admin_phone varchar(20),
 	admin_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into admin values('001','刘德华',0,'001',0,'1','001街','123456','15832421093','天王');
 create table customer(
 	customer_id varchar(10) not null,
 	customer_name varchar(10),
@@ -26,10 +28,11 @@ create table customer(
 	customer_address varchar(50),
 	customer_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into customer values('001','黎明',0,'001','123456','13378945637','1987-10-08','002街','常驻客户')
 create table `order`(
 	order_id varchar(10) not null,
 	order_type int,
-	order_number varchar(10),
+	handover_id varchar(10),
 	goods_name varchar(20),
 	goods_weight int,
 	mailer_name varchar(20),
@@ -49,20 +52,25 @@ create table `order`(
 	vehicle_id varchar(10),
 	order_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into `order` values('001',0,'001','飞科剃须刀',1,'郭富城','002街','13378943433',
+'黎明',0,'002街','13378945637','001','002','003',10,10,10,'30','001','用的放心');
 create table province(
 	province_id varchar(10) not null,
 	province_name varchar(10)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into province values('001','北京市'),('002','天津市'),('0033','上海市');
 create table city(
 	city_id varchar(10) not null,
 	city_name varchar(10),
 	province_id varchar(10) references province(province_id)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into city values('001','张家口','001'),('002','秦皇岛','001');
 create table region(
 	region_id varchar(10) not null,
 	region_name varchar(50),
 	city_id varchar(10) references city(city_id)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into region values('001','宣化区','001'),('002','尚义县','001');
 create table route(
 	route_id varchar(10) not null,
 	route_name varchar(10),
@@ -75,6 +83,7 @@ create table route(
 	carriage_price decimal(18,0),
 	route_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into route values('001','加急路线','001','001','','','002','002',30,'加急');
 create table vehicle(
 	vehicle_id varchar(10) not null,
 	vehicle_type varchar(10),
@@ -84,6 +93,7 @@ create table vehicle(
 	buy_date datetime,
 	vehicle_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into vehicle values('001','K8G8','北京','001','2018-5-10','2018-10-20','特快')
 create table handover(
 	start_city varchar(10) not null,
 	end_city varchar(10),
@@ -92,6 +102,7 @@ create table handover(
 	generation_time datetime,
 	handover_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into handover values('001','002','',1,'2018-10-20','尽快运输');
 create table distribution(
 	distribution_id varchar(10) not null,
 	distribution_name varchar(10),
@@ -102,6 +113,7 @@ create table distribution(
 	distribution_address varchar(50),
 	distribution_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into distribution values('001','圆通','001','001','001','15070668377','005街','');
 create table `range`(
 	range_id int not null,
 	range_name varchar(10),
@@ -109,3 +121,4 @@ create table `range`(
 	city_id varchar(10) references city(city_id),
 	range_remarks varchar(50)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+insert into `range`  values(1,'005街',5,'001','')
